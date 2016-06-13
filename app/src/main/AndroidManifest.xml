@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lge.ihems">
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- GCM 관련 -->
+    <permission
+        android:name="com.lge.ihems.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.lge.ihems.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:launchMode="singleTask"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:windowSoftInputMode="adjustUnspecified">
+
+        <!-- GCM 리시버 -->
+        <receiver
+            android:name=".gcm.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.lge.ihems" />
+            </intent-filter>
+        </receiver>
+
+        <!-- GCM 리시버에서 돌리는 서비스 -->
+        <service android:name=".gcm.GcmIntentService" />
+
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.EnergyUseStatusActivity" />
+        <activity android:name=".activity.EnvModeActivity" />
+        <activity android:name=".activity.TemperatureEnvActivity" />
+        <activity android:name=".activity.CO2EnvActivity" />
+        <activity android:name=".activity.DustEnvActivity" />
+        <activity android:name=".activity.EnvFareActivity" />
+        <activity android:name=".activity.TodayEnergyActivity" />
+        <activity android:name=".activity.EnergyDepthHelpActivity" />
+        <activity android:name=".activity.EnergyCalenderActivity" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.MainLeftslidemenu" />
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.HumidityEnvActivity" />
+        <activity android:name=".activity.EnergySetActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.SettingNotiActivity" />
+        <activity android:name=".activity.SettingNotiListActivity" />
+        <activity android:name=".activity.SettingProductActivity" />
+        <activity android:name=".activity.EnvTodayStatusActivity" />
+        <activity android:name=".activity.EnergyLateMoneyActivity"></activity>
+    </application>
+
+</manifest>
